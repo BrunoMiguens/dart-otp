@@ -70,15 +70,6 @@ void main() {
         "otpauth://totp/Digits?secret=J22U6B3WIWRRBTAV&issuer=More&digits=8&algorithm=SHA256&period=60");
   });
 
-  test('[TOTP] Fail Conditions: Init Asserts', () {
-    expect(() => TOTP(secret: null),
-        throwsA(predicate((e) => e.toString().contains('secret != null'))));
-    expect(() => TOTP(secret: '', digits: null),
-        throwsA(predicate((e) => e.toString().contains('digits != null'))));
-    expect(() => HOTP(secret: '', digits: 0, algorithm: null),
-        throwsA(predicate((e) => e.toString().contains('algorithm != null'))));
-  });
-
   test('[TOTP] Fail Conditions: Validations', () {
     expect(totp.value(date: null), null);
     expect(totp.verify(otp: null, time: null), false);
