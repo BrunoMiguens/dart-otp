@@ -28,13 +28,11 @@ class HOTP extends OTP {
   /// Will throw an exception if the line above isn't satisfied.
   ///
   HOTP(
-      {String secret,
-      int counter = 0,
+      {required String secret,
+      this.counter = 0,
       int digits = 6,
       OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
-      : super(secret: secret, digits: digits, algorithm: algorithm) {
-    this.counter = counter;
-  }
+      : super(secret: secret, digits: digits, algorithm: algorithm);
 
   ///
   /// Generate the HOTP value with the given count
@@ -44,7 +42,7 @@ class HOTP extends OTP {
   /// hotp.at(counter: 0); // => 432143
   /// ```
   ///
-  String at({int counter}) {
+  String? at({int? counter}) {
     if (counter == null || counter < 0) {
       return null;
     }
@@ -66,12 +64,12 @@ class HOTP extends OTP {
   /// hotp.verify(otp: 432143, counter: 10); // => false
   /// ```
   ///
-  bool verify({String otp, int counter}) {
+  bool verify({String? otp, int? counter}) {
     if (otp == null || counter == null) {
       return false;
     }
 
-    String otpCount = this.at(counter: counter);
+    String? otpCount = this.at(counter: counter);
     return otp == otpCount;
   }
 }

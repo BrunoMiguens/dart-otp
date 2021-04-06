@@ -63,15 +63,6 @@ void main() {
         "otpauth://hotp/Digits?secret=J22U6B3WIWRRBTAV&issuer=More&digits=8&algorithm=SHA256&counter=10");
   });
 
-  test('[HOTP] Fail Conditions: Init Asserts', () {
-    expect(() => HOTP(secret: null),
-        throwsA(predicate((e) => e.toString().contains('secret != null'))));
-    expect(() => HOTP(secret: '', digits: null),
-        throwsA(predicate((e) => e.toString().contains('digits != null'))));
-    expect(() => HOTP(secret: '', digits: 0, algorithm: null),
-        throwsA(predicate((e) => e.toString().contains('algorithm != null'))));
-  });
-
   test('[HOTP] Fail Conditions: Validations', () {
     expect(hotp.at(counter: -1), null);
     expect(hotp.at(counter: null), null);

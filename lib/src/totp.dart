@@ -12,7 +12,7 @@ import 'package:dart_otp/src/components/otp_algorithm.dart';
 /// TOTP class will generate the OTP (One Time Password) object with the current or given time.
 class TOTP extends OTP {
   /// Period in which should be generated new tokens.
-  int interval;
+  int? interval;
 
   @override
   OTPType get type => OTPType.TOTP;
@@ -29,7 +29,7 @@ class TOTP extends OTP {
   /// Will throw an exception if the line above isn't satisfied.
   ///
   TOTP(
-      {String secret,
+      {required String secret,
       int digits = 6,
       int interval = 30,
       OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
@@ -46,7 +46,7 @@ class TOTP extends OTP {
   /// ```
   ///
   String now() {
-    int _formatTime = Util.timeFormat(time: DateTime.now(), interval: interval);
+    int _formatTime = Util.timeFormat(time: DateTime.now(), interval: interval!);
     return super.generateOTP(input: _formatTime);
   }
 
@@ -60,12 +60,12 @@ class TOTP extends OTP {
   /// totp.value(date: DateTime.now()); // => 432143
   /// ```
   ///
-  String value({DateTime date}) {
+  String? value({DateTime? date}) {
     if (date == null) {
       return null;
     }
 
-    int _formatTime = Util.timeFormat(time: date, interval: interval);
+    int _formatTime = Util.timeFormat(time: date, interval: interval!);
     return super.generateOTP(input: _formatTime);
   }
 
@@ -83,13 +83,13 @@ class TOTP extends OTP {
   /// totp.verify(otp: 432143); // => false
   /// ```
   ///
-  bool verify({String otp, DateTime time}) {
+  bool verify({String? otp, DateTime? time}) {
     if (otp == null) {
       return false;
     }
 
     var _time = time ?? DateTime.now();
-    var _input = Util.timeFormat(time: _time, interval: interval);
+    var _input = Util.timeFormat(time: _time, interval: interval!);
 
     String otpTime = super.generateOTP(input: _input);
     return otp == otpTime;
