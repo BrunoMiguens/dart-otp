@@ -1,7 +1,7 @@
 # dart_otp
 
 [![pub package](https://img.shields.io/pub/v/dart_otp.svg)](https://pub.dev/packages/dart_otp)
-[![Build Status](https://travis-ci.org/BrunoMiguens/dart_otp.svg?branch=master)](https://travis-ci.org/BrunoMiguens/dart_otp)
+[![Build Status](https://travis-ci.com/BrunoMiguens/dart_otp.svg?branch=master)](https://travis-ci.com/BrunoMiguens/dart_otp)
 [![Coverage Status](https://coveralls.io/repos/github/BrunoMiguens/dart_otp/badge.svg?branch=master)](https://coveralls.io/github/BrunoMiguens/dart_otp?branch=master)
 
 `dart_otp` is a dart package to generate and verify one-time passwords that were used to implement 2FA and MFA authentication method in web applications and other login-required systems.
